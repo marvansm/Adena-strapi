@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="./node_modules/remixicon/fonts/remixicon.css"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <header
+      class="py-[35px] border-t border-t-gray-200 border-b border-b-gray-200"
+    >
+      <nav
+        class="flex items-center justify-between container max-w-[1440px] mx-auto"
+      >
+        <div class="left max-w-[80px]">
+          <img
+            src="https://wpbingo-adena.myshopify.com/cdn/shop/files/logo.png?crop=center&height=129&v=1729503852&width=399"
+            alt=""
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="mid">
+          <ul class="flex items-center gap-[40px] text-[14px] font-normal">
+            <li>Home <i class="ri-arrow-down-s-line"></i></li>
+            <li>Shop <i class="ri-arrow-down-s-line"></i></li>
+            <li>Product <i class="ri-arrow-down-s-line"></i></li>
+            <li>Blog <i class="ri-arrow-down-s-line"></i></li>
+            <li>Featured <i class="ri-arrow-down-s-line"></i></li>
+          </ul>
+        </div>
+        <div class="right">
+          <ul class="flex items-center gap-[20px] text-[20px]">
+            <li><i class="ri-search-line"></i></li>
+            <li><i class="ri-user-line"></i></li>
+            <li><i class="ri-heart-line"></i></li>
+            <li><i class="ri-shopping-bag-2-line"></i></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="container max-w-[1440px] mx-auto">
+        <div class="banner flex items-center justify-center flex-col py-[45px]">
+          <h2 class="text-[#000000] text-[40px] font-light">Products</h2>
+          <ul class="flex items-center gap-1 font-normal text-[14px]">
+            <li class="underline">Home</li>
+            <li>/</li>
+            <li>Products</li>
+          </ul>
+        </div>
+        <div class="grid grid-cols-12 gap-5">
+          <div class="col-span-3">
+            <div class="pt-6">
+              <div class="space-y-3">
+                <h2
+                  class="text-[24px] capitalize flex items-center justify-between"
+                >
+                  Collections <i class="ri-arrow-down-s-line"></i>
+                </h2>
+                <div
+                  class="flex justify-between flex-col items-start gap-2"
+                  id="collectionList"
+                ></div>
+
+                <button class="text-gray-500 text-sm flex items-center mt-2">
+                  + View more
+                </button>
+              </div>
+            </div>
+            <div class="pt-6">
+              <div class="space-y-3">
+                <h2
+                  class="text-[24px] capitalize flex items-center justify-between"
+                >
+                  Availability <i class="ri-arrow-down-s-line"></i>
+                </h2>
+                <div
+                  class="flex justify-between flex-col items-start gap-2"
+                  id="Availability"
+                ></div>
+              </div>
+            </div>
+            <div class="pt-6">
+              <div class="space-y-3">
+                <h2
+                  class="text-[24px] capitalize flex items-center justify-between"
+                >
+                  Color <i class="ri-arrow-down-s-line"></i>
+                </h2>
+                <div class="flex items-center gap-4" id="colors"></div>
+              </div>
+            </div>
+            <div class="pt-6">
+              <div class="space-y-3">
+                <h2
+                  class="text-[24px] capitalize flex items-center justify-between"
+                >
+                  Size <i class="ri-arrow-down-s-line"></i>
+                </h2>
+                <div class="flex items-center gap-4" id="sizes"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-9">
+            <div class="grid grid-cols-3 gap-8 pt-6" id="productLists"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
