@@ -13,6 +13,143 @@
     <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
+   <div id="cartModal" class="fixed inset-0 z-[100] hidden">
+      <div
+        id="cartOverlay"
+        class="absolute inset-0 bg-black/40 opacity-0 transition-opacity"
+      ></div>
+
+      <div
+        id="cartPanel"
+        class="absolute right-0 top-0 h-full w-full max-w-[420px] bg-white shadow-2xl translate-x-full transition-transform duration-300 flex flex-col"
+      >
+        <button
+          id="cartClose"
+          class="absolute right-4 top-4 p-2 rounded hover:bg-gray-100"
+          aria-label="Close"
+        >
+          <i class="ri-close-line text-xl"></i>
+        </button>
+
+        <div class="p-5 border-b">
+          <div class="rounded-md bg-[#f7f4f1] p-4">
+            <div class="flex items-center gap-2 text-[13px]">
+              <i class="ri-flashlight-fill"></i>
+              <span class="font-medium">FREE SHIPPING ON ORDERS $100.00</span>
+            </div>
+            <p id="shipMsg" class="mt-1 text-[12px] text-gray-600">
+              Spend $40.00 more and get free shipping!
+            </p>
+            <div class="mt-3 h-[6px] rounded-full bg-gray-200 overflow-hidden">
+              <div id="shipBar" class="h-full w-0 bg-black"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="cartItems" class="flex-1 overflow-y-auto p-5">
+          <div class="flex gap-3">
+            <div
+              class="w-[64px] h-[64px] rounded overflow-hidden bg-gray-100 shrink-0"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1617038260897-3a0779e7a17d?q=80&w=600&auto=format&fit=crop"
+                alt="APOLLO COIN NECKLACE"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="flex-1">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h4 class="text-[13px] font-medium leading-5">
+                    APOLLO COIN NECKLACE
+                  </h4>
+                  <div class="text-[12px] text-gray-500">Color: Silver</div>
+                </div>
+                <button
+                  class="p-1 rounded hover:bg-gray-100"
+                  id="removeBtn"
+                  aria-label="Remove"
+                >
+                  <i class="ri-delete-bin-6-line text-[16px]"></i>
+                </button>
+              </div>
+
+              <div class="mt-2 flex items-center gap-3">
+                <div
+                  class="inline-flex items-center border rounded"
+                  id="qtyBox"
+                  data-price="60"
+                >
+                  <button class="px-2 py-1 text-[14px]" data-step="dec">
+                    –
+                  </button>
+                  <span id="qty" class="px-3 select-none text-[13px]">1</span>
+                  <button class="px-2 py-1 text-[14px]" data-step="inc">
+                    +
+                  </button>
+                </div>
+                <div class="ml-auto text-[13px] font-medium">$60.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t p-5 space-y-4">
+          <div class="grid grid-cols-4 gap-3 text-center text-[12px]">
+            <button
+              class="flex flex-col items-center gap-2 rounded-md border p-3 hover:bg-gray-50"
+            >
+              <i class="ri-gift-line text-lg"></i><span>Add gift wrap</span>
+            </button>
+            <button
+              class="flex flex-col items-center gap-2 rounded-md border p-3 hover:bg-gray-50"
+            >
+              <i class="ri-edit-2-line text-lg"></i><span>Add note</span>
+            </button>
+            <button
+              class="flex flex-col items-center gap-2 rounded-md border p-3 hover:bg-gray-50"
+            >
+              <i class="ri-coupon-2-line text-lg"></i><span>Coupon</span>
+            </button>
+            <button
+              class="flex flex-col items-center gap-2 rounded-md border p-3 hover:bg-gray-50"
+            >
+              <i class="ri-truck-line text-lg"></i><span>Shipping</span>
+            </button>
+          </div>
+
+          <div class="flex items-center justify-between text-[14px]">
+            <span class="text-gray-700">Subtotal:</span>
+            <span id="subtotal" class="font-medium">$60.00</span>
+          </div>
+          <p class="text-[12px] text-gray-500">
+            Taxes and shipping calculated at checkout
+          </p>
+
+          <label class="flex items-start gap-2 text-[12px]">
+            <input id="agree" type="checkbox" class="mt-[3px] accent-black" />
+            <span
+              >I agree with the
+              <a href="#" class="underline">terms and conditions</a></span
+            >
+          </label>
+
+          <div class="flex gap-3 pt-1">
+            <button
+              id="checkoutBtn"
+              class="h-11 flex-1 rounded-md bg-black text-white text-[12px] tracking-wide disabled:opacity-50"
+            >
+              CHECK OUT
+            </button>
+            <button
+              class="h-11 flex-1 rounded-md border text-[12px] tracking-wide hover:bg-gray-50"
+            >
+              VIEW CART
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <header
       class="py-[35px] border-t border-t-gray-200 border-b border-b-gray-200"
     >
@@ -110,7 +247,6 @@
           </div>
           <div class="col-span-9">
             <div class="grid grid-cols-3 gap-8 pt-6" id="productLists"></div>
-            
           </div>
         </div>
       </section>
