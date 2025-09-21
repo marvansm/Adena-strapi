@@ -8,13 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const COLOR_LISTS = document.querySelector("#colors");
   const SIZE_LISTS = document.querySelector("#sizes");
 
-  // Cart modal elementləri
   const CART_MODAL = document.getElementById("cartModal");
   const CART_PANEL = document.getElementById("cartPanel");
   const CART_OVERLAY = document.getElementById("cartOverlay");
   const CART_CLOSE = document.getElementById("cartClose");
 
-  // Modal bağlama funksiyası
+  const SUBMIT_REGISTER = document.querySelector("#submitRegister");
+  const REGSITER_USERNAME = document.querySelector("#username");
+  const REGSITER_EMAIL = document.querySelector("#email");
+  const REGSITER_PASSWORD = document.querySelector("#password");
+
+  const LOGIN_FORM = document.querySelector("#loginForm");
+  const LOGIN_EMAIL = document.querySelector("#loginEmail");
+  const LOGIN_PASSWORD = document.querySelector("#loginPassword");
+
   const closeModal = () => {
     CART_OVERLAY.classList.add("opacity-0");
     CART_OVERLAY.classList.remove("opacity-100");
@@ -25,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   };
 
-  // Modal bağlama eventləri
   CART_CLOSE.addEventListener("click", closeModal);
   CART_OVERLAY.addEventListener("click", closeModal);
 
@@ -216,4 +222,46 @@ document.addEventListener("DOMContentLoaded", () => {
   Availability();
   collections();
   productsRender();
+
+  SUBMIT_REGISTER &&
+    SUBMIT_REGISTER.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const payload = {
+        username: REGSITER_USERNAME.value,
+        email: REGSITER_EMAIL.value,
+        password: REGSITER_PASSWORD.value,
+      };
+      api.loginAuth("auth/local/register", payload).then((data) => {
+        if (data?.user) {
+          localStorage.setItem("email", data?.user?.email);
+          setTimeout(() => {
+            window.location.href = "../login.html";
+          }, 800);
+          Swal?.fire?.({
+            title: "Registered",
+            icon: "success",
+            draggable: true,
+          });
+        }
+      });
+    });
+
+  LOGIN_FORM &&
+    LOGIN_FORM.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const payload = {
+        identifier: LOGIN_EMAIL.value,
+        password: LOGIN_PASSWORD.value,
+      };
+      api.loginAuth("auth/local", payload).then((data) => {
+        if (data?.user) {
+          localStorage.setItem("token", data?.jwt);
+          localStorage.setItem("email", data?.user?.email);
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 800);
+          Swal?.fire?.({ title: "Welcome", icon: "success", draggable: true });
+        }
+      });
+    });
 });
